@@ -1,0 +1,16 @@
+{{ define "banner-h1" }}Contact Us{{ end }}
+{{ define "banner-h2" }}We would love to hear from you.{{ end }}
+{{ define "banner-img" }}{{ call .URL "/img/banners/contact.jpg" }}{{ end }}
+{{ define "banner-img-mobile" }}{{ call .URL "/img/banners/contact-mobile.jpg" }}{{ end }}
+{{ define "banner-class" }}text-white{{ end }}
+{{ define "banner" }}
+{{ template "banner-tmpl" . }}
+{{ end }}
+
+{{ define "content" }}
+<div class="py-5 text-center h2">
+  <p class="my-5">
+    <a href="mailto:cpinones53@gmail.com" class="text-dark"><img class="icon-lg" src="{{ call .URL "/img/octicons-v10.0.0/mail-16.svg" }}" alt="Mail"> cpinones53@gmail.com</a>
+  </p>
+</div>
+{{ end }}

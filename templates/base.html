@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Whole Body Wellness</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{ block "css" . }}
+    <link rel="stylesheet" type="text/css" href="{{ call .URL "/bootstrap-4.3.1/css/bootstrap.min.css" }}">
+    <link rel="stylesheet" type="text/css" href="{{ call .URL "/css/main.css" }}">
+    {{ end }}
+  </head>
+  <body>
+    {{ block "body" . }}
+    {{ block "header" . }}
+    <header class="w-100">
+      <nav class="navbar navbar-expand-lg navbar-light w-100 sticky-top">
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-content" aria-controls="navbar-content" aria-expanded="false" aria-label="Toggle navigation">
+	  <span class="navbar-toggler-icon"></span>
+	</button>
+	<div class="collapse navbar-collapse" id="navbar-content">
+	  <ul class="navbar-nav ml-auto mr-3">
+	    {{ with $parent := . }}
+	    {{ range $idx, $_ := json "nav.json" }}
+	    {{ $active := call $parent.Active .url }}
+	    {{ if not .skip }}
+	    <li class="nav-item {{ if .children }}dropdown{{ end }} {{if $active }}active{{ end }}">
+	      <a class="nav-link h5 {{ if .children }}dropdown-toggle{{ end }}"
+		 href="{{ call $parent.URL .url }}"
+		 {{ if .children }}
+		 id="navbar-dropdown-{{ $idx }}"
+		 role="button"
+		 data-toggle="dropdown"
+		 aria-haspopup="true"
+		 aria-expanded="false"
+		 {{ end }}
+		 >{{ .text }}{{ if $active }} <span class="sr-only">(current)</span>{{ end }}</a>
+	      {{ if .children }}
+	      <div class="dropdown-menu" aria-labelledby="navbar-dropdown-{{ $idx }}">
+		{{ range .children }}
+		{{ $active2 := call $parent.Active .url }}
+		{{ if not .skip }}
+		<a class="dropdown-item {{ if $active2 }}active{{ end }}" href="{{ call $parent.URL .url }}">{{ .text }}{{ if $active2 }} <span class="sr-only">(current)</span>{{ end }}</a>
+		{{ if .divider }}
+		<div class="dropdown-divider"></div>
+		{{ end }}
+		{{ end }}
+		{{ end }}
+              </div>
+	      {{ end }}
+	    </li>
+	    {{ end }}
+	    {{ end }}
+	    {{ end }}
+	  </ul>
+	</div>
+      </nav>
+      {{ block "banner" . }}{{ end }}
+    </header>
+    {{ end }}
+    {{ block "main" . }}
+    <main class="container">
+      {{ block "content" . }}
+      {{ end }}
+    </main>
+    {{ end }}
+    {{ block "footer" . }}
+    <footer class="footer py-3 text-muted d-print-none">
+      <div class="container-fluid">
+	<div class="row mx-4">
+	  <div class="col col-auto mr-auto my-3">
+            <span class="align-middle">&copy; 2020 Whole Body Wellness</span>
+	  </div>
+	  <div class="col col-auto my-3">
+            <!-- <a href="https://www.youtube.com/channel/UCTr8w3QXcjSmLa6vO70kelA"><img src="{{ call .URL "/img/icons/youtube-dark.png" }}" alt="YouTube" class="icon" /></a> -->
+            <!-- <a href="https://www.facebook.com/meggie.pinones"><img src="{{ call .URL "/img/icons/facebook-dark.svg" }}" alt="Facebook" class="icon" /></a> -->
+            <a href="https://github.com/mgbelisle/wholebodywellness"><img src="{{ call .URL "/img/octicons-v10.0.0/mark-github-16.svg" }}" alt="GitHub" class="icon" /></a>
+	  </div>
+	</div>
+      </div>
+    </footer>
+    {{ end }}
+    {{ block "script" . }}
+    <script src="{{ call .URL "/js/jquery-3.5.1.slim.min.js" }}"></script>
+    <script src="{{ call .URL "/bootstrap-4.3.1/js/bootstrap.bundle.min.js" }}"></script>
+    <script src="{{ call .URL "/js/main.js" }}"></script>
+    {{ end }}
+    {{ end }}
+  </body>
+</html>
