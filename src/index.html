@@ -1,7 +1,16 @@
 {{ define "banner-h1" }}Chris Pinones, FNP{{ end }}
-{{ define "banner-h2" }}{{ end }}
-{{ define "banner-img" }}{{ call .URL "/img/banners/home.svg" }}{{ end }}
+{{ define "banner-h2" }}Mind-body connection<br>
+Spirituality<br>
+Relationships<br>
+Environment<br>
+Personal development<br>
+Nutrition<br>
+Rest<br>
+Exercise
+{{ end }}
+{{ define "banner-img" }}{{ call .URL "/img/banners/home.jpg" }}{{ end }}
 {{ define "banner-img-mobile" }}{{ call .URL "/img/banners/home-mobile.jpg" }}{{ end }}
+{{ define "banner-class" }}text-white{{ end }}
 {{ define "banner" }}
 {{ template "banner-tmpl" . }}
 {{ end }}
