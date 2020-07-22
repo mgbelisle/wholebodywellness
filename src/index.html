@@ -15,12 +15,13 @@
       <div class="col-lg-6">
 	<div id="carousel" class="carousel slide" data-ride="carousel">
 	  <div class="carousel-inner">
-	    <div class="carousel-item active">
-	      <img src="{{ call .URL "/img/home-carousel-1.png" }}" class="d-block w-100" alt="Chris Pinones Nurse Practitioner">
+	    {{ with $parent := . }}
+	    {{ range $idx, $_ := json "home-carousel.json" }}
+	    <div class="carousel-item {{ if eq $idx 0 }}active{{ end }}">
+	      <img src="{{ call $parent.URL .src }}" class="d-block w-100" alt="{{ .alt }}">
 	    </div>
-	    <div class="carousel-item">
-	      <img src="{{ call .URL "/img/home-carousel-2.png" }}" class="d-block w-100" alt="Chris Pinones yoga instructor">
-	    </div>
+	    {{ end }}
+	    {{ end }}
 	  </div>
 	  <a class="carousel-control-prev" href="#carousel" role="button" data-slide="prev">
 	    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
