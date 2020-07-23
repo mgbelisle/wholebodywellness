@@ -3,8 +3,7 @@
   <img src="{{ template "banner-img" . }}" alt="{{ template "banner-img" . }}" class="w-100 d-none d-lg-inline-block">
   <img src="{{ template "banner-img-mobile" . }}" alt="{{ template "banner-img-mobile" . }}" class="w-100 d-inline-block d-lg-none">
   <div class="{{ block "banner-class" . }}{{ end }} position-absolute text-center center w-100">
-    <h1 class="banner-h mt-5">{{ block "banner-h1" . }}{{ end }}</h1>
-    <h3 class="banner-h">{{ block "banner-h2" . }}{{ end }}</h3>
+    {{ block "banner-h" . }}{{ end }}
   </div>
 </div>
 {{ end }}
